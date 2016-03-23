@@ -4,7 +4,7 @@
   "description": "Commitizen adapter following the conventional-changelog format.",
   "main": "index.js",
   "scripts": {
-    "test": "echo 'Tests need to be setup!'",
+    "test": "echo 'Tests need to be setup!'"
   },
   "homepage": "https://github.com/formhero/fh-conventional-changelog",
   "repository": {
