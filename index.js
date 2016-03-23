@@ -36,6 +36,10 @@ module.exports = {
         message: 'Select the type of change that you\'re committing:',
         choices: [
         {
+          name: 'squash:   An incomplete feature or fix that should be squashed using git rebase',
+          value: 'squash'
+        },
+        {
           name: 'feat:     A new feature',
           value: 'feat'
         }, {
