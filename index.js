@@ -44,20 +44,24 @@ module.exports = {
           value: 'perf' }, { name: 'test:     Adding missing tests',
           value: 'test' }, { name: 'chore:    Changes to the build process or auxiliary tools\n            and libraries such as documentation generation',
           value: 'chore' }] }, { type: 'input',
-        name: 'scope',
-        message: 'Denote the scope of this change ($location, $browser, $compile, etc.):\n' }, { type: 'input',
-        name: 'subject',
-        message: 'Write a short, imperative tense description of the change:\n' }, { type: 'input',
-        name: 'body',
-        message: 'Provide a longer description of the change:\n' },
+          name: 'scope',
+          message: 'Denote the scope of this change ($location, $browser, $compile, etc.):\n'
+        },
+        { type: 'input',
+          name: 'subject',
+          message: 'Write a short, imperative tense description of the change:\n' },
+        { type: 'input',
+          name: 'body',
+          message: 'Provide a longer description of the change:\n'
+        },
         {
           type: 'input',
           name: 'footer',
-          message: 'List any issues closed by this change:\n  example: closes FORMHERO-123\r'
+          message: 'List any issues closed by this change:\n  example: closes FORMHERO-123\n'
         },
         {
            type: 'input',
-           name: 'breakingChanges',
+           name: 'breaking',
            message: 'List any breaking changes:\n  example: module name changed from fhc-utils to formhero-utils\n'
         }
 
@@ -79,9 +83,10 @@ module.exports = {
       // Wrap these lines at 100 characters
       var body = wrap(answers.body, wrapOptions);
       var footer = wrap(answers.footer, wrapOptions);
-      var breakingChanges = wrap(answers.breakingChanges, wrapOptions).trim();
-
-      if(breakingChanges.length() > 0) breakingChanges = "BREAKING CHANGES\n" + breakingChanges;
+      var breakingChanges = wrap(answers.breaking, wrapOptions);
+      console.log("Breaking changes: ", breakingChanges);
+      if(footer) footer = "CLOSES: " + footer;
+      if(breakingChanges) breakingChanges = "BREAKING CHANGES:\n" + breakingChanges;
 
       commit(head + '\n\n' + body + '\n\n' + footer + '\n' + breakingChanges);
     });
