@@ -57,12 +57,12 @@ module.exports = {
         {
           type: 'input',
           name: 'footer',
-          message: 'List any issues closed by this change:\n  example: closes FORMHERO-123\n'
+          message: 'List any issues closed by this change (on one line):\n  example: Closes/Fixes/Resolves FORMHERO-xyz\n'
         },
         {
            type: 'input',
            name: 'breaking',
-           message: 'List any breaking changes:\n  example: module name changed from fhc-utils to formhero-utils\n'
+           message: 'List any breaking changes:\n  example: BREAKING CHANGE: module name changed from fhc-utils to formhero-utils\n'
         }
 
     ], function (answers) {
@@ -84,8 +84,6 @@ module.exports = {
       var body = wrap(answers.body, wrapOptions);
       var footer = wrap(answers.footer, wrapOptions);
       var breakingChanges = wrap(answers.breaking, wrapOptions);
-      console.log("Breaking changes: ", breakingChanges);
-      if(footer) footer = "CLOSES: " + footer;
       if(breakingChanges) breakingChanges = "BREAKING CHANGES:\n" + breakingChanges;
 
       commit(head + '\n\n' + body + '\n\n' + footer + '\n' + breakingChanges);
