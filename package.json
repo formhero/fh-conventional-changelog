@@ -23,6 +23,18 @@
   "config": {
     "commitizen": {
       "path": "./index"
+    },
+    "pre-git": {
+      "pre-commit": [
+        "npm test",
+        "nsp check"
+      ],
+      "post-commit": "git status",
+      "pre-push": [
+        "rm -rf node_modules",
+        "npm install",
+        "npm test",
+        "nsp check"
+      ]
     }
-  }
 }
